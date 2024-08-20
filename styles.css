@@ -115,8 +115,9 @@ section {
 
 .examples-video {
     border-radius: 25px;
-    max-width: 100%;
+    width: 360px;
 }
+
 
 .first-group {
     display: flex;
@@ -419,5 +420,10 @@ footer a:hover {
     .language-selector {
         position: absolute;
     }
+
+    .examples-video {
+        max-width: 100%;
+    }
+    
 
 }
