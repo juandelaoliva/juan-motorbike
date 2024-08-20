@@ -59,7 +59,7 @@ section {
 }
 
 .language-selector {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     z-index: 3;
@@ -74,7 +74,24 @@ section {
     cursor: pointer;
     transition: transform 0.3s ease;
     font-size: 2rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
+
+.language-selector button.active{
+    border: 1px solid white;
+}
+
+#es-btn {
+background-image: url(assets/espana.png);
+}
+
+#en-btn {
+    background-image: url(assets/reino-unido.png);
+    }
 
 .language-selector button:hover {
     transform: scale(1.1);
@@ -350,6 +367,10 @@ footer a:hover {
     }
     .first-group {
         display:block;
+    }
+
+    .language-selector {
+        position: absolute;
     }
     
 }
