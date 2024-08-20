@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Meta Tags para SEO -->
+    <meta name="description" content="Ayúdame a Capturar Aventuras!" />
+    <meta
+      name="keywords"
+      content="Insta360 X4, aventuras en moto, recaudación de fondos, videos de moto, cumpleaños, donaciones"
+    />
+    <meta name="author" content="Juan de la Oliva" />
+
+    <!-- Meta Tags para Redes Sociales -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Ayúdame a Capturar Aventuras" />
+    <meta
+      property="og:description"
+      content="Estoy recaudando fondos para comprar una cámara Insta360 X4 para seguir compartiendo mis aventuras en moto. ¡Cada pequeña ayuda cuenta!"
+    />
+    <meta property="og:image" content="assets/trk_landscape.jpg" />
+    <meta property="og:url" content="https://tu-sitio-web.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <title>Ayúdame a Capturar Aventuras</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <div class="language-selector">
+          <button id="es-btn" class="active">🇪🇸</button>
+          <button id="en-btn">🇺🇸</button>
+        </div>
+        <h1
+          data-es="Mamá, no te preocupes, estoy yendo con cuidado"
+          data-en="Mom, don't worry, I'm being careful"
+        >
+          Mamá, no te preocupes, estoy yendo con cuidado
+        </h1>
+        <p
+          data-es="Para que estés tranquila, quiero usar una cámara 360 que graba todo mientras me concentro en la carretera, sin tener que tocarla y creando videos super chulos."
+          data-en="To keep you at ease, I want to use a 360 camera that captures everything while I focus on the road, without having to touch it, and making super cool videos."
+        >
+          Para que estés tranquila, quiero usar una cámara 360 que graba todo
+          mientras me concentro en la carretera, sin tener que tocarla y creando
+          videos super chulos.
+        </p>
+      </div>
+      <video autoplay loop muted playsinline class="hero-video">
+        <source src="assets/bg-video.mp4" type="video/mp4" />
+        Tu navegador no soporta videos HTML5.
+      </video>
+    </header>
+    <div class="first-group">
+      <section id="intro">
+        <img class="juan-asset" src="assets/IMG_2453.png" alt="Juan en moto" />
+        <p data-es="Hola a todos!" data-en="Hi everyone!">Hola a todos!</p>
+
+        <p
+          data-es="He decidido hacerme con una cámara Insta360 X4 para seguir compartiendo mis aventuras contigo y con todos mis amigos. Todavía estoy reuniendo el dinero para comprarla."
+          data-en="I've decided to get an Insta360 X4 camera to keep sharing my adventures with you and all my friends. I'm still gathering the funds to buy it."
+        >
+          He decidido hacerme con una cámara Insta360 X4 para seguir
+          compartiendo mis aventuras contigo y con todos mis amigos. Todavía
+          estoy reuniendo el dinero para comprarla.
+        </p>
+
+        <p
+          data-es="Como el precio es bastante alto, sería genial si por mi cumpleaños (30 de agosto), pudiera recibir una ayuda para conseguirla. ¡Cualquier aportación, por pequeña que sea, me acercará más a este objetivo y será el mejor regalo que podría pedir!"
+          data-en="Since the price is quite high, it would be great if I could get some help for my birthday (August 30th) to make it happen. Any contribution, no matter how small, will bring me closer to this goal and would be the best gift I could ask for!"
+        >
+          Como el precio es bastante alto, sería genial si por mi cumpleaños (30
+          de agosto), pudiera recibir una ayuda para conseguirla. ¡Cualquier
+          aportación, por pequeña que sea, me acercará más a este objetivo y
+          será el mejor regalo que podría pedir!
+        </p>
+
+        <img class="insta-asset" src="assets/insta.png" alt="Insta 360 X4" />
+      </section>
+
+      <section id="examples">
+        <h2 data-es="Mira que guay!" data-en="Look how cool!">
+          Mira que guay!
+        </h2>
+        <video autoplay loop muted playsinline class="examples-video">
+          <source src="assets/instaexamples.mp4" type="video/mp4" />
+          Tu navegador no soporta videos HTML5.
+        </video>
+      </section>
+    </div>
+
+    <!-- Sección de Progreso -->
+    <section id="progress">
+      <h2 data-es="Progreso del objetivo" data-en="Goal Progress">
+        Progreso del objetivo
+      </h2>
+      <div class="progress-container">
+        <span class="progress-start">0€</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar">
+            <span id="progress-percentage">0% - 0€</span>
+          </div>
+        </div>
+        <span class="progress-end">559,99€</span>
+      </div>
+    </section>
+
+    <!-- Sección de Colaboradores -->
+    <section id="collaborators">
+      <h2 data-es="Colaboradores" data-en="Collaborators">Colaboradores</h2>
+      <ul id="collaborator-list">
+        <!-- Lista dinámica de colaboradores -->
+      </ul>
+    </section>
+
+    <section id="donate">
+      <h2 data-es="Cómo puedes ayudar" data-en="How you can help">
+        Cómo puedes ayudar
+      </h2>
+      <div class="donation-links">
+        <button
+          id="copy-btn"
+          class="donation-btn"
+          data-es="Bizum - Copia mi número"
+          data-en="Bizum - Copy my number"
+        >
+          Bizum - Copia mi número
+        </button>
+        <a
+          target="_blank"
+          href="paypal.me/juandelaoliva"
+          class="donation-btn"
+          data-es="PayPal"
+          data-en="PayPal"
+          >PayPal</a
+        >
+
+        <input type="hidden" id="phone-number" value="617916319" />
+      </div>
+      <p
+        data-es="❤️ O de la manera que tu prefieras ❤️"
+        data-en="❤️ Or in any way you prefer! ❤️ "
+      >
+        ❤️ O de la manera que tu prefieras ❤️
+      </p>
+    </section>
+
+    <section id="videos">
+      <h2
+        data-es="Aquí puedes ver algunos de mims vídeos!"
+        data-en="Here you can see some of my videos!"
+      >
+        Aquí puedes ver algunos de mims vídeos!
+      </h2>
+      <div class="video-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/mZ_tGOjoZdE?si=fYsoT_3Wk9_HcHQ3"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/HoW661fuCAA?si=3_nSaf-sMSORqMwS"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/qCdqX6Gb61I?si=wCHks8eGEI3cCZfC"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/tu-video3"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <a
+        target="_blank"
+        href="https://www.youtube.com/@juandelaoliva1"
+        class="donation-btn"
+        data-es="Visita mi canal"
+        data-en="Visit my channel"
+        >Visita mi canal</a
+      >
+    </section>
+
+    <footer>
+      <p
+        data-es="❤️ Muchísimas gracias! ❤️"
+        data-en="❤️ Thank you very much! ❤️ "
+      >
+        ❤️ Muchísimas gracias! ❤️
+      </p>
+      <div class="social-links">
+        <a
+          class="icon-link"
+          href="https://www.instagram.com/juandelaoliva_godot/"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="assets/social-icons/Insta_Logo.svg"
+            alt="Instagram"
+            width="56"
+            height="56"
+          />
+        </a>
+
+        <a
+          class="icon-link"
+          href="https://www.tiktok.com/@juandelaoliva"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="assets/social-icons/Tiktok_Logo.svg"
+            alt="tiktok"
+            width="56"
+            height="56"
+          />
+        </a>
+        <a
+          class="icon-link"
+          href="https://www.youtube.com/@juandelaoliva1"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="assets/social-icons/Youtube_Logo.svg"
+            alt="YouTube"
+            width="56"
+            height="56"
+          />
+        </a>
+      </div>
+      <p>Juan de la Oliva</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
