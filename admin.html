@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gestionar Colaboradores</title>
+    <script type="module">
+        // Implementar Basic Auth
+        const username = 'juan';
+        const password = 'juan123';
+
+        const credentials = prompt('Introduce tus credenciales (usuario:contraseña)');
+
+        if (credentials !== `${username}:${password}`) {
+            alert('Acceso denegado');
+            window.location.href = 'about:blank'; // Redirigir a una página en blanco o cerrar la pestaña
+        } else {
+            alert('Acceso concedido');
+        }
+
+        // Importar las funciones necesarias del SDK de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getFirestore, collection, doc, query, orderBy, onSnapshot, updateDoc, deleteDoc, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+        // Configura Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDUvpgttLRgN1Ckk93irvOhaaAxhetQ3zM",
+            authDomain: "insta360-dbd66.firebaseapp.com",
+            projectId: "insta360-dbd66",
+            storageBucket: "insta360-dbd66.appspot.com",
+            messagingSenderId: "429747119644",
+            appId: "1:429747119644:web:adcd319f3e02522a8521d9"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let currentOrderField = 'date';
+        let currentOrderDirection = 'asc';
+        let currentSearchTerm = '';
+
+        // Función para añadir o actualizar un colaborador
+        async function addOrUpdateCollaborator(id = null) {
+            const name = document.getElementById('name').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const collaboratorData = {
+                name: name,
+                date: Timestamp.now()
+            };
+
+            if (!isNaN(amount) && amount > 0) {
+                collaboratorData.amount = amount;
+            }
+
+            try {
+                if (id) {
+                    // Actualizar colaborador
+                    const docRef = doc(db, 'collaborators', id);
+                    await updateDoc(docRef, collaboratorData);
+                    alert('Colaborador actualizado');
+                } else {
+                    // Añadir nuevo colaborador
+                    await addDoc(collection(db, 'collaborators'), collaboratorData);
+                    alert('Colaborador añadido');
+                }
+                document.getElementById('collaborator-form').reset();
+            } catch (error) {
+                alert('Error gestionando colaborador: ' + error.message);
+            }
+        }
+
+        // Función para eliminar un colaborador
+        async function deleteCollaborator(id) {
+            if (confirm("¿Estás seguro de que quieres eliminar este colaborador?")) {
+                try {
+                    const docRef = doc(db, 'collaborators', id);
+                    await deleteDoc(docRef);
+                    alert('Colaborador eliminado');
+                } catch (error) {
+                    alert('Error eliminando colaborador: ' + error.message);
+                }
+            }
+        }
+
+        // Función para cargar colaboradores
+        function loadCollaborators() {
+            const collaboratorList = document.getElementById('collaborator-list');
+            let q = query(collection(db, 'collaborators'), orderBy(currentOrderField, currentOrderDirection));
+
+            onSnapshot(q, (snapshot) => {
+                collaboratorList.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const collaborator = doc.data();
+                    if (collaborator.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            ${collaborator.name} - €${collaborator.amount ? collaborator.amount.toFixed(2) : '0.00'}
+                            <button style="padding: 5px 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; margin-left: 10px;" onclick="editCollaborator('${doc.id}', '${collaborator.name}', ${collaborator.amount || 0})">Editar</button>
+                            <button style="padding: 5px 10px; background-color: #FF4B5C; color: white; border: none; border-radius: 5px; margin-left: 5px;" onclick="deleteCollaborator('${doc.id}')">Eliminar</button>
+                        `;
+                        li.style.padding = '10px';
+                        li.style.marginBottom = '10px';
+                        li.style.border = '1px solid #ddd';
+                        li.style.borderRadius = '5px';
+                        collaboratorList.appendChild(li);
+                    }
+                });
+            });
+        }
+
+        // Función para buscar colaboradores
+        function searchCollaborators() {
+            currentSearchTerm = document.getElementById('search-box').value;
+            loadCollaborators();
+        }
+
+        // Función para ordenar colaboradores
+        function orderCollaborators(field) {
+            currentOrderField = field;
+            currentOrderDirection = currentOrderDirection === 'asc' ? 'desc' : 'asc';
+            loadCollaborators();
+        }
+
+        // Cargar colaboradores al cargar la página
+        window.onload = loadCollaborators;
+
+        // Manejar el formulario de añadir/actualizar colaborador
+        document.getElementById('collaborator-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const collaboratorId = document.getElementById('collaborator-id').value;
+            addOrUpdateCollaborator(collaboratorId);
+        });
+
+        // Función para preparar la edición de un colaborador
+        window.editCollaborator = function(id, name, amount) {
+            document.getElementById('collaborator-id').value = id;
+            document.getElementById('name').value = name;
+            document.getElementById('amount').value = amount;
+        };
+
+        // Función para eliminar un colaborador (definida en el ámbito global)
+        window.deleteCollaborator = deleteCollaborator;
+        window.searchCollaborators = searchCollaborators;
+        window.orderCollaborators = orderCollaborators;
+
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        ul li button {
+            cursor: pointer;
+        }
+
+        .back-button {
+            display: block;
+            max-width: 200px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .sort-buttons {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .sort-buttons button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sort-buttons button:hover {
+            background-color: #5a6268;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Gestionar Colaboradores</h1>
+    
+    <form id="collaborator-form">
+        <input type="hidden" id="collaborator-id">
+        <input type="text" id="name" placeholder="Nombre del Colaborador" required>
+        <input type="number" id="amount" placeholder="Monto en € (opcional)">
+        <button type="submit">Añadir/Actualizar</button>
+    </form>
+
+    <div class="search-container">
+        <input type="text" id="search-box" placeholder="Buscar por nombre" oninput="searchCollaborators()">
+    </div>
+
+    <div class="sort-buttons">
+        <button onclick="orderCollaborators('name')">Ordenar por Nombre</button>
+        <button onclick="orderCollaborators('amount')">Ordenar por Monto (€)</button>
+    </div>
+
+    <h2>Colaboradores Existentes</h2>
+    <ul id="collaborator-list">
+        <!-- Lista dinámica de colaboradores -->
+    </ul>
+
+    <!-- Botón para volver a la página principal -->
+    <a href="index.html" class="back-button">Volver a Inicio</a>
+</body>
+</html>
