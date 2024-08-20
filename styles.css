@@ -1,12 +1,14 @@
 /* General styles */
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
-    background-color: white; /* Fondo general */
+    background-color: white;
+    /* Fondo general */
     color: white;
 }
 
@@ -32,7 +34,8 @@ body, html {
 }
 
 .hero-content {
-    color: #fff; /* Color del texto en el hero */
+    color: #fff;
+    /* Color del texto en el hero */
     z-index: 2;
     text-align: center;
     max-width: 90%;
@@ -48,7 +51,8 @@ section {
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease-in-out;
     font-family: 'Oswald', sans-serif;
-    font-size: 4rem; /* Puedes ajustar el tamaño según tu preferencia */
+    font-size: 4rem;
+    /* Puedes ajustar el tamaño según tu preferencia */
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease-in-out;
 }
@@ -68,7 +72,8 @@ section {
 .language-selector button {
     background: transparent;
     border: none;
-    color: #375536; /* Color de las banderas */
+    color: #375536;
+    /* Color de las banderas */
     padding: 0.5rem 0.3rem;
     margin-left: 5px;
     cursor: pointer;
@@ -81,17 +86,17 @@ section {
     border-radius: 50%;
 }
 
-.language-selector button.active{
+.language-selector button.active {
     border: 1px solid white;
 }
 
 #es-btn {
-background-image: url(assets/espana.png);
+    background-image: url(assets/espana.png);
 }
 
 #en-btn {
     background-image: url(assets/reino-unido.png);
-    }
+}
 
 .language-selector button:hover {
     transform: scale(1.1);
@@ -108,7 +113,7 @@ background-image: url(assets/espana.png);
     z-index: 0;
 }
 
-.examples-video{
+.examples-video {
     border-radius: 25px;
 }
 
@@ -121,7 +126,9 @@ background-image: url(assets/espana.png);
 #intro {
     text-align: center;
     padding: 4rem 2rem 2rem;
-    background-color: #375536; /* Fondo claro */
+    background: rgb(8, 55, 11);
+    background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+    /* Fondo claro */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -151,14 +158,16 @@ background-image: url(assets/espana.png);
 }
 
 #donate p {
-    
-color:    #375536; /* Fondo claro */
+
+    color: #375536;
+    /* Fondo claro */
 }
 
 #donate h2,
 #examples h2 {
-color:    #375536; /* Fondo claro */
-margin-top: 0;
+    color: #375536;
+    /* Fondo claro */
+    margin-top: 0;
 }
 
 #donate .donation-links {
@@ -170,8 +179,10 @@ margin-top: 0;
 
 .donation-btn {
     padding: 1rem 2rem;
-    background-color: #DDA15E; /* Botones dorados */
-    color: #fff; /* Texto claro */
+    background-color: #DDA15E;
+    /* Botones dorados */
+    color: #fff;
+    /* Texto claro */
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -182,11 +193,14 @@ margin-top: 0;
 }
 
 .donation-btn:hover {
-    background-color: #BC6C25; /* Hover en marrón anaranjado */
+    background-color: #BC6C25;
+    /* Hover en marrón anaranjado */
 }
 
 #videos {
-    background-color: #375536; /* Fondo claro */
+    background: rgb(8, 55, 11);
+    background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+    /* Fondo claro */
     padding: 2rem 1rem;
     text-align: center;
     border-radius: 10px;
@@ -195,7 +209,8 @@ margin-top: 0;
 
 #videos h2 {
     margin-bottom: 1rem;
-    color: #fff; /* Título en verde oscuro */
+    color: #fff;
+    /* Título en verde oscuro */
     margin-top: 0;
 }
 
@@ -218,37 +233,58 @@ section h2 {
 }
 
 footer {
-    background-color: #283618; /* Fondo en verde oscuro */
-    color: #fff; /* Texto claro */
+    background: rgb(8, 55, 11);
+    background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+    /* Fondo claro */
+    color: #fff;
+    /* Texto claro */
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
 }
 
 footer a {
-    color: #DDA15E; /* Enlaces dorados */
+    color: #DDA15E;
+    /* Enlaces dorados */
     text-decoration: none;
 }
 
 footer a:hover {
     text-decoration: underline;
-    color: #BC6C25; /* Hover en marrón anaranjado */
+    color: #BC6C25;
+    /* Hover en marrón anaranjado */
 }
 
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #progress {
     text-align: center;
     padding: 2rem 1rem;
-    background-color: #375536; /* Fondo claro */
+    background: rgb(8, 55, 11);
+    background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+    /* Fondo claro */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -264,7 +300,8 @@ footer a:hover {
 
 .progress-bar {
     height: 100%;
-    background-color: #DDA15E; /* Barra de progreso en verde oliva */
+    background-color: #DDA15E;
+    /* Barra de progreso en verde oliva */
     border-radius: 25px;
     width: 0;
     transition: width 0.4s ease-in-out;
@@ -277,7 +314,8 @@ footer a:hover {
     top: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    color: #283618; /* Texto oscuro dentro de la barra */
+    color: #283618;
+    /* Texto oscuro dentro de la barra */
 }
 
 .progress-container {
@@ -288,7 +326,8 @@ footer a:hover {
 
 .progress-start,
 .progress-end {
-    color: #fff; /* Texto en verde oscuro */
+    color: #fff;
+    /* Texto en verde oscuro */
     font-weight: bold;
 }
 
@@ -298,7 +337,9 @@ footer a:hover {
     background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #375536; /* Fondo claro */
+    background: rgb(8, 55, 11);
+    background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+    /* Fondo claro */
 }
 
 #collaborator-list {
@@ -314,8 +355,10 @@ footer a:hover {
 #collaborator-list li {
     width: auto;
     height: 60px;
-    background-color: #DDA15E; /* Verde oscuro para los círculos */
-    color: #fff; /* Texto claro */
+    background-color: #DDA15E;
+    /* Verde oscuro para los círculos */
+    color: #fff;
+    /* Texto claro */
     border-radius: 50px;
     display: flex;
     align-items: center;
@@ -358,19 +401,22 @@ footer a:hover {
     #intro {
         text-align: center;
         padding: 2rem 1rem;
-        background-color: #375536; /* Fondo claro */
+        background: rgb(8, 55, 11);
+        background: linear-gradient(303deg, rgba(8, 55, 11, 1) 0%, rgba(55, 85, 54, 1) 21%, rgba(58, 105, 57, 1) 100%);
+        /* Fondo claro */
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         position: relative;
         margin-top: 115px;
         margin-bottom: auto;
     }
+
     .first-group {
-        display:block;
+        display: block;
     }
 
     .language-selector {
         position: absolute;
     }
-    
+
 }
