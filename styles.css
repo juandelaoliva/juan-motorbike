@@ -115,6 +115,7 @@ section {
 
 .examples-video {
     border-radius: 25px;
+    max-width: 100%;
 }
 
 .first-group {
