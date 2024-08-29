@@ -42,7 +42,7 @@ function addCollaborator(name) {
 
 // Cargar colaboradores desde Firebase y actualizar la interfaz
 const collaboratorsRef = collection(db, 'collaborators');
-const q = query(collaboratorsRef, orderBy('amount', 'desc'));
+const q = query(collaboratorsRef, orderBy('date', 'asc'));
 
 onSnapshot(q, (snapshot) => {
     collaboratorList.innerHTML = '';  // Limpiar la lista antes de añadir
